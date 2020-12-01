@@ -1,0 +1,46 @@
+version: "3.8"
+services:
+
+  app-server:
+    build:
+      context: .
+      dockerfile: ./App-Dockerfile
+    image: ng-webserver
+    restart: always
+    container_name: ng-webapp
+    working_dir: /app
+    ports:
+      - 4200:4200
+    volumes:
+      - type: bind
+        source: "./app"
+        target: /app
+    command: ng serve --host 0.0.0.0
+  
+  api-server:
+    build:
+      context: .
+      dockerfile: ./Api-Dockerfile
+    image: nest-webserver
+    restart: always
+    container_name: nest-webapi
+    working_dir: /api
+    ports:
+      - 3000:3000
+    volumes:
+      - type: bind
+        source: "./api"
+        target: /api
+    command: npm run start:dev
+  
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongo-db
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    container_name: mongo-express
+    ports:
+      - 8081:8081
