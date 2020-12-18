@@ -4,7 +4,7 @@ services:
   app-server:
     build:
       context: .
-      dockerfile: ./App-Dockerfile
+      dockerfile: ./App.Dockerfile
     image: ng-webserver
     restart: always
     container_name: ng-webapp
@@ -20,7 +20,7 @@ services:
   api-server:
     build:
       context: .
-      dockerfile: ./Api-Dockerfile
+      dockerfile: ./Api.Dockerfile
     image: nest-webserver
     restart: always
     container_name: nest-webapi
