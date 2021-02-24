@@ -24,7 +24,7 @@ services:
     image: nest-webserver
     restart: always
     container_name: nest-webapi
-    working_dir: /api
+    working_dir: /api/nest-webapi
     ports:
       - 3000:3000
     volumes:
